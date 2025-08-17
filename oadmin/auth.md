@@ -1,4 +1,10 @@
-# 登录和权限
+# 开启鉴权
+开启后非白名单接口，会登录和权限拦截
+````conf.toml
+auth=true
+blacklist=["user/login",'user/captcha',"system/get"]
+````
+## 登录和权限
 User云对象已经实现jwt登录，和权限查询
 ````ts
 async login({code,token}) {

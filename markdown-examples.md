@@ -1,29 +1,37 @@
-# 简介
-是首个用面型对象形式，云对象+odb对象数据库的全栈开发的web框架,这里没有http,接口,
-sql,vo,三层架构等概念,云对象+odb实现快速开发,提升10倍生产力
-## 快速开始
-````bash
-git clone https://github.com/oop-dev/oop-dev.git
+
+
+# 全局拦截器
+run(intercepter)
+## 拦截示例
+以下是登录拦截，和接口权限拦截,详情查看index.ts
+````ts
+import {run, conf, verifyToken,getJwt, Rsp} from "./oop-core/oapi";
+run(intercepter)
+async function intercepter(r,w) {
+    const path = new URL(r.url).pathname.substring(1);
+    let token=r.headers.get('Authorization')
+    if (conf.auth && !conf.blacklist.includes(path) && !(await verifyToken(token))){
+        //去掉错误码，直接用错误信息代替错误码
+        throw 'Unauthorized'
+    }
+    if (conf.auth&&!conf.blacklist.includes(path) &&!has(getJwt(token).payload,path)){
+        throw 'Forbidden'
+    }
+}
+function has(user,perm) {
+    let permissions=user?.role.flatMap(r=>r.permission)
+    let has=permissions?.some(p =>['*',perm].includes(p.name))
+    return has
+}
 ````
-## 环境安装
-bun安装:目前仅支持bun，为serverless冷启动速度和ts考虑，当node支持ts时，考虑node.js，不用担心了，bun是兼容node的
-````bash
-linux: curl -fsSL https://bun.sh/install | bash
-win: powershell -c "irm bun.sh/install.ps1 | iex"
-````
-## 依赖安卓
-````bash
-pnpm i  #推荐使用pnpm，npm，cnpm，bun都可以安装依赖,可能要node环境
-````
-## 数据库
-项目启动自动分配独立云pg数据库，不用云db把conf.toml中dsn替换即可
-````conf.toml
-[pg]
-dsn='postgres://postgres:root@localhost:5432/odb'
-````
-## 运行
-非mock模拟数据，这是一个完整的全栈项目，api目录是后端，登录conf.toml分配的云数据库，可查看数据库数据
-````bash
-bun run start
-访问：http://localhost:5173 用户名admin密码admin
-````
+
+# 视频教程
+  <MyButton />
+
+# 示例页面
+
+这里有一些文本。
+
+<script setup>
+import MyButton from './.vitepress/components/MyButton.vue'
+</script>

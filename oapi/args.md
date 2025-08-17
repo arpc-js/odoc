@@ -11,8 +11,8 @@ export class Student  {
     async hello(name) {
         return 'hello world'
     }
-    async greet(name,age) {
-        return `name:${name},age:${age}`
+    async greet() {
+        return `name:${this.name},age:${this.age}`
     }
     async greet1({name,age}) {
         return `name:${name},age:${age}`
