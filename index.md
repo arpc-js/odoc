@@ -90,42 +90,42 @@ layout: home
   <div class="course-grid">
     <div class="course-card" onclick="location.href='/go/basic/brief'">
       <img src="https://img1.baidu.com/it/u=3832301141,3410087310&fm=253&fmt=auto&app=138&f=JPEG?w=533&h=300" alt="Java 基础与进阶" />
-      <h3>go语言基础</h3>
+      <h3>go基础(基础)</h3>
       <p>从基础语法到面向对象编程，全面掌握 go 开发技能。</p>
-    </div>
-    <div class="course-card" onclick="location.href='/go/basic/env'">
-      <img src="https://img1.baidu.com/it/u=3928867252,2686995192&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="Java 高级特性" />
-      <h3>go语言进阶</h3>
-      <p>深入学习 go 的高级特性，如多线程、网络编程等。</p>
     </div>
     <div class="course-card" onclick="location.href='/courses/java-spring'">
       <img src="https://img2.baidu.com/it/u=1989396254,3035840477&fm=253&fmt=auto&app=120&f=JPEG?w=607&h=314" alt="Spring 框架" />
-      <h3>go web</h3>
+      <h3>web(基础)</h3>
       <p>掌握 Spring 框架核心概念及实战项目开发。</p>
     </div>
     <div class="course-card" onclick="location.href='/courses/java-concurrency'">
       <img src="https://img2.baidu.com/it/u=2044802650,1067595981&fm=253&fmt=auto&app=138&f=GIF?w=712&h=356" alt="Java 并发" />
-      <h3>数据库</h3>
+      <h3>数据库(基础)</h3>
       <p>深入理解线程、锁和并发编程技巧。</p>
     </div>
     <div class="course-card" onclick="location.href='/courses/java-project'">
-      <img src="https://img2.baidu.com/it/u=2372233649,3764909538&fm=253&fmt=auto&app=138&f=JPEG?w=821&h=277" alt="Java 高级项目" />
-      <h3>微服务</h3>
-      <p>通过实战项目掌握完整的 Java 开发流程。</p>
-    </div>
-    <div class="course-card" onclick="location.href='/courses/java-project'">
       <img src="https://img0.baidu.com/it/u=3290348688,3670688774&fm=253&fmt=auto&app=138&f=JPEG?w=812&h=500" alt="Java 高级项目" />
-      <h3>项目实战</h3>
+      <h3>项目实战(基础)</h3>
       <p>通过实战项目掌握完整的 Java 开发流程。</p>
     </div>
+    <div class="course-card" onclick="location.href='/go/basic/env'">
+      <img src="https://img1.baidu.com/it/u=3928867252,2686995192&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="Java 高级特性" />
+      <h3>go进阶(进阶)</h3>
+      <p>深入学习 go 的高级特性，如多线程、网络编程等。</p>
+    </div>
     <div class="course-card" onclick="location.href='/courses/java-project'">
-      <img src="https://img2.baidu.com/it/u=1409843398,1247988121&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="Java 高级项目" />
-      <h3>微服务项目实战</h3>
+      <img src="https://img2.baidu.com/it/u=2372233649,3764909538&fm=253&fmt=auto&app=138&f=JPEG?w=821&h=277" alt="Java 高级项目" />
+      <h3>web微服务(基础)</h3>
       <p>通过实战项目掌握完整的 Java 开发流程。</p>
     </div>
     <div class="course-card" onclick="location.href='/courses/java-project'">
       <img src="https://img1.baidu.com/it/u=2433116461,3497340546&fm=253&fmt=auto&app=138&f=JPEG?w=638&h=359" alt="Java 高级项目" />
-      <h3>八股文</h3>
+      <h3>数据库进阶(进阶)</h3>
+      <p>通过实战项目掌握完整的 Java 开发流程。</p>
+    </div>
+    <div class="course-card" onclick="location.href='/courses/java-project'">
+      <img src="https://img2.baidu.com/it/u=1409843398,1247988121&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" alt="Java 高级项目" />
+      <h3>微服务项目实战(进阶)</h3>
       <p>通过实战项目掌握完整的 Java 开发流程。</p>
     </div>
   </div>

@@ -1,25 +1,25 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-    title: "挂壁it课堂",
+    title: "挂B课堂",
     description: "A VitePress Site",
     themeConfig: {
         nav: [
-            { text: '前端', link: '/frontend/index' },
-            { text: 'Go', link: '/go/index' },
+            { text: '大前端', link: '/frontend/index' },
+            { text: '小程序', link: '/go/basic/brief' },
+            { text: 'Go', link: '/go/basic/brief' },
             { text: 'Java', link: '/java/index' },
             { text: 'NodeJS', link: '/nodejs/index' },
-            { text: 'Linux运维', link: '/linux/index' },
+            { text: 'python', link: '/nodejs/index' },
+            { text: 'linux', link: '/nodejs/index' },
+            { text: '移动开发', link: '/nodejs/index' },
+            { text: '快速建站', link: '/nodejs/index' },//wp，vp等
+            { text: '爬虫', link: '/nodejs/index' },
             { text: '嵌入式&物联网', link: '/embedded/index' },
-            { text: 'Arpc.js', link: '/frontend/index' },
-            { text: 'Go', link: '/go/index' },
-            { text: 'Java', link: '/java/index' },
-            { text: 'NodeJS', link: '/nodejs/index' },
-            { text: 'Linux运维', link: '/linux/index' },
-            { text: '嵌入式&物联网', link: '/embedded/index' },
-            { text: 'NodeJS', link: '/nodejs/index' },
-            { text: 'Linux运维', link: '/linux/index' },
-            { text: '嵌入式&物联网', link: '/embedded/index' }
+            { text: '面试八股文', link: '/nodejs/index' },
+            { text: '项目实战', link: '/nodejs/index' },
+            { text: '成品源码', link: '/linux/index' },
+            { text: 'arpc.js全栈框架', link: '/linux/index' },
         ],
 
         sidebar: {
@@ -99,42 +99,83 @@ export default defineConfig({
             // Go 路线
             '/go/': [
                 {
-                    text: 'go基础', collapsed: true, items: [
+                    text: 'go基础(基础)', collapsed: true, items: [
                         { text: 'go介绍', link: '/go/basic/brief' },
                         { text: '环境搭建', link: '/go/basic/env' },
                         { text: '变量与常量', link: '/go/basic/variables_constants' },
-                        {
-                            text: '数据类型', collapsed: true, items: [
-                                { text: '数字类型', link: '/go/basic/data_type/number' },
-                                { text: '布尔类型', link: '/go/basic/array' },
-                                { text: '字符串类型', link: '/go/basic/slice' },
-                                { text: '数组类型', link: '/go/basic/map' },
-                                { text: '切片类型', link: '/go/basic/map' },
-                                { text: 'map类型', link: '/go/basic/map' },
-                                { text: '结构体类型', link: '/go/basic/struct' },
-                                { text: '接口类型', link: '/go/basic/struct' },
-                                { text: '函数类型', link: '/go/basic/methods_interfaces' },
-                                { text: 'Channel通道类型', link: '/go/basic/struct' },
-                                { text: '指针类型', link: '/go/basic/methods_interfaces' }
-                            ]
-                        },
-                        { text: '运算符', link: '/go/basic/variables_constants' },
+                        {text: '基本数据类型',link:'/go/basic/basic_type'},
+                        { text: '运算符', link: '/go/basic/operator' },
                         {
                             text: '流程控制', collapsed: true, items: [
-                                { text: 'if', link: '/go/basic/array' },
-                                { text: 'switch(可选)', link: '/go/basic/array' },
-                                { text: 'for', link: '/go/basic/slice' },
-                                { text: 'range ', link: '/go/basic/map' },
+                                { text: 'if条件分支', link: '/go/basic/control_flow/if' },
+                                { text: 'for循环', link: '/go/basic/control_flow/for' },
+                                { text: 'range循环遍历', link: '/go/basic/control_flow/range' },
                             ]
                         },
-                        { text: '函数', link: '/go/basic/variables_constants' },
-                        { text: '结构体和实例', link: '/go/basic/variables_constants' },
-                        { text: '方法，实例的动作', link: '/go/basic/variables_constants' },
-                        { text: '错误处理', link: '/go/basic/variables_constants' },
+                        { text: '函数', link: '/go/basic/func' },
+                        {
+                            text: '复合数据类型', collapsed: true, items: [
+                                { text: '切片类型', link: '/go/basic/composite_type/slice' },
+                                { text: 'map类型', link: '/go/basic/composite_type/map' },
+                                { text: '结构体类型', link: '/go/basic/composite_type/struct' },
+                            ]
+                        },
+                        { text: '方法', link: '/go/basic/method' },
+                        { text: '错误处理', link: '/go/basic/err' },
                     ]
                 },
                 {
-                    text: 'go进阶(可选)', collapsed: true, items: [
+                    text: 'Web(基础)', collapsed: true, items: [
+                        { text: 'HTTP 简介', link: '/go/web/http_introduction' }, //只讲http原理、为什么要http，请求响应概念
+                        {
+                            text: 'gin框架', collapsed: true, items: [
+                                { text: 'gin使用和包管理', link: '/go/http/gin/intro' }, // Hello World, 启动服务
+                                { text: 'HTTP请求', link: '/go/http/gin/request' }, // GET/POST
+                                { text: '参数解析', link: '/go/http/gin/binding' }, // query/json/form/header
+                                { text: 'HTTP响应', link: '/go/http/gin/response' }, //code,data,msg/ JSON, HTML, 状态码, Header
+                                { text: '中间件机制', link: '/go/http/gin/middleware' }, // 日志、jwt鉴权、跨域
+                                { text: 'jwt登录', link: '/go/http/gin/middleware' }, // 日志、jwt鉴权、跨域
+                            ]
+                        },
+                    ]
+                },
+                {
+                    text: '数据库(基础)', collapsed: true, items: [
+                        { text: 'mysql数据库', collapsed: true, items: [
+                                { text: '介绍', link: '/go/database/gorm/intro' },
+                                { text: '安装和连接', link: '/go/database/gorm/crud' },
+                                { text: '创建数据库和表', link: '/go/database/gorm/project' },//索引放这里
+                                { text: '插入', link: '/go/database/gorm/project' },//单表，联查，where条件，排序，limit
+                                { text: '查询', link: '/go/database/gorm/project' },
+                                { text: '修改', link: '/go/database/gorm/project' },
+                                { text: '删除', link: '/go/database/gorm/project' },
+                                { text: '删除', link: '/go/database/gorm/project' },
+
+                            ]
+                        },
+                        { text: 'GORM 框架', collapsed: true, items: [
+                                { text: 'GORM连接数据库', link: '/go/database/gorm/intro' },
+                                { text: '插入', link: '/go/database/gorm/project' },//单表，联查，条件，排序，limit
+                                { text: '查询', link: '/go/database/gorm/project' },
+                                { text: '修改', link: '/go/database/gorm/project' },
+                                { text: '删除', link: '/go/database/gorm/project' },
+                                { text: '事务', link: '/go/database/gorm/project' }
+                            ]
+                        },
+                        { text: 'Redis 使用', link: '/go/database/redis' },
+                        { text: 'MongoDB 使用', link: '/go/database/redis' }
+                    ]
+                },
+                {
+                    text: '单体项目实战(基础)', collapsed: true, items: [
+                        { text: '命令行工具开发', link: '/go/project/cli_tool' },
+                        { text: 'Web 服务搭建', link: '/go/project/web_service' },
+                        { text: 'Gin + GORM 综合实战', link: '/go/project/gin_gorm_project' },
+                        { text: '微服务项目实战', link: '/go/project/microservice_project' }
+                    ]
+                },
+                {
+                    text: 'go进阶(进阶)', collapsed: true, items: [
                         {
                             text: '并发编程', collapsed: true, items: [
                                 { text: '协程', link: '/go/basic/array' },
@@ -153,42 +194,16 @@ export default defineConfig({
                     ]
                 },
                 {
-                    text: 'Web 服务', collapsed: true, items: [
-                        { text: 'HTTP 基础', link: '/go/http/http_basic' },
-                        { text: '路由与请求处理', link: '/go/http/router_request' },
-                        { text: 'Gin 框架', collapsed: true, items: [
-                                { text: 'Gin 入门', link: '/go/http/gin/intro' },
-                                { text: 'Gin REST API 实战', link: '/go/http/gin/rest_api' },
-                                { text: 'Gin 中间件使用', link: '/go/http/gin/middleware' }
-                            ]}
-                    ]
-                },
-                {
-                    text: '数据库', collapsed: true, items: [
-                        { text: 'mysql数据库', collapsed: true, items: [
-                                { text: '介绍', link: '/go/database/gorm/intro' },
-                                { text: '安装和连接', link: '/go/database/gorm/crud' },
-                                { text: '创建数据库', link: '/go/database/gorm/project' },
-                                { text: '创建表', link: '/go/database/gorm/project' },
-                                { text: '插入', link: '/go/database/gorm/project' },
-                                { text: '查询', link: '/go/database/gorm/project' },
-                                { text: '修改', link: '/go/database/gorm/project' },
-                                { text: '删除', link: '/go/database/gorm/project' },
-                                { text: '索引', link: '/go/database/gorm/project' },
-                            ]
-                        },                        { text: '事务与连接池', link: '/go/database/mysql_transactions' },
-                        { text: 'GORM 框架', collapsed: true, items: [
-                                { text: 'GORM 基础', link: '/go/database/gorm/intro' },
-                                { text: '模型定义与 CRUD', link: '/go/database/gorm/crud' },
-                                { text: '事务与项目实战', link: '/go/database/gorm/project' }
+                    text: 'web微服务(进阶)', collapsed: true, items: [
+                        {
+                            text: 'web进阶', collapsed: true, items: [
+                                { text: 'Nginx 搭建集群', link: '/go/microservice/cluster/nginx' },
+                                { text: '集群间通信问题', link: '/go/microservice/cluster/communication' },
+                                { text: '集群缓存与Session管理', link: '/go/microservice/cluster/session' },
+                                { text: '分布式锁', link: '/go/microservice/cluster/task_scheduling' },
+                                { text: '集群任务调度', link: '/go/microservice/cluster/task_scheduling' }
                             ]
                         },
-                        { text: 'Redis 使用', link: '/go/database/redis' },
-                        { text: 'MongoDB 使用', link: '/go/database/redis' }
-                    ]
-                },
-                {
-                    text: '微服务(可选)', collapsed: true, items: [
                         {
                             text: '集群', collapsed: true, items: [
                                 { text: 'Nginx 搭建集群', link: '/go/microservice/cluster/nginx' },
@@ -244,7 +259,7 @@ export default defineConfig({
                     ]
                 },
                 {
-                    text: '项目实战', collapsed: true, items: [
+                    text: '数据库进阶(进阶)', collapsed: true, items: [
                         { text: '命令行工具开发', link: '/go/project/cli_tool' },
                         { text: 'Web 服务搭建', link: '/go/project/web_service' },
                         { text: 'Gin + GORM 综合实战', link: '/go/project/gin_gorm_project' },
@@ -252,15 +267,7 @@ export default defineConfig({
                     ]
                 },
                 {
-                    text: '微服务项目(可选)', collapsed: true, items: [
-                        { text: '命令行工具开发', link: '/go/project/cli_tool' },
-                        { text: 'Web 服务搭建', link: '/go/project/web_service' },
-                        { text: 'Gin + GORM 综合实战', link: '/go/project/gin_gorm_project' },
-                        { text: '微服务项目实战', link: '/go/project/microservice_project' }
-                    ]
-                },
-                {
-                    text: '面试八股文', collapsed: true, items: [
+                    text: '微服务项目实战(进阶)', collapsed: true, items: [//八股文里面分为基础和进阶
                         { text: '命令行工具开发', link: '/go/project/cli_tool' },
                         { text: 'Web 服务搭建', link: '/go/project/web_service' },
                         { text: 'Gin + GORM 综合实战', link: '/go/project/gin_gorm_project' },

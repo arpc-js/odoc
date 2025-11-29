@@ -1,6 +1,10 @@
-<MyButton />
+<VideoPlayer
+src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+poster="https://img1.baidu.com/it/u=3832301141,3410087310&fm=253&fmt=auto&app=138&f=JPEG?w=533&h=300"
+/>
+
 <script setup>
-import MyButton from '../../.vitepress/components/MyButton.vue'
+import VideoPlayer from '../../.vitepress/components/VideoPlayer.vue'
 </script>
 
 # 1.1 下载go
