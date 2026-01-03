@@ -32,6 +32,3 @@ function has(user,perm) {
 
 这里有一些文本。
 
-<script setup>
-import MyButton from './.vitepress/components/MyButton.vue'
-</script>

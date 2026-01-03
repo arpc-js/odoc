@@ -1,82 +1,185 @@
+<!-- .vitepress/components/VideoPlayer.vue -->
 <template>
-  <div class="container">
-    <!-- 登录状态检测 -->
-    <div v-if="!isLoggedIn" class="login-message" @click="goLogin">
-      <p>🔐点击登录vip查看视频</p>
+  <div
+      v-if="show && mounted"
+      :class="['video-wrapper', { 'floating-mode': isPC }]"
+  >
+    <!-- 未登录：锁 + 提示 -->
+    <div v-if="!isLoggedIn" class="login-cover" @click="goLogin">
+      <div class="lock-icon">Lock</div>
+      <div class="tip">点击登录 VIP 查看视频</div>
     </div>
-    <!-- 视频播放区域 -->
-    <div v-else class="video-container">
-      <video
-          width="640"
-          controls
-          :poster="poster"
-      >
-        <source :src="src" type="video/mp4" />
-        您的浏览器不支持视频播放。
-      </video>
-    </div>
+
+    <!-- 已登录：播放视频 -->
+    <video
+        v-else
+        :src="src"
+        :poster="poster"
+        controls
+        playsinline
+        preload="metadata"
+        :loop="isPC"
+        class="the-video"
+    >
+      您的浏览器不支持视频播放。
+    </video>
+
+    <!-- PC 才有关闭按钮 -->
+    <!--    <button v-if="isLoggedIn && isPC" class="close-btn" @click="closeFloating">
+          ×
+        </button>-->
   </div>
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue'
+import { ref, watchEffect, onMounted, onUnmounted } from 'vue'
 
-// 接收外部传入的视频链接和海报
 defineProps({
-  src: {
-    type: String,
-    required: true
-  },
-  poster: {
-    type: String,
-    default: '' // 可选，没传就不显示封面
-  }
+  src: { type: String, required: true },
+  poster: { type: String, default: '' }
 })
 
 const isLoggedIn = ref(false)
+const show = ref(true)
+const mounted = ref(false) // 添加这个标记
+// 是否为 PC（>768px）- 初始设为false，避免SSR错误
+const isPC = ref(false)
 
-// 自动监听 token 变化
+// 登录状态监听
 watchEffect(() => {
-  isLoggedIn.value = !!localStorage.getItem('token')
+  if (mounted.value && typeof localStorage !== 'undefined') {
+    isLoggedIn.value = !!localStorage.getItem('token')
+  }
 })
 
-// 跳转登录页
-function goLogin() {
-  const currentPath = encodeURIComponent(window.location.pathname + window.location.search)
-  window.location.href = `/login.html?redirect=${currentPath}`
+let updateSize
+
+// 监听窗口大小变化 + 记住用户是否关闭过悬浮窗
+onMounted(() => {
+  mounted.value = true
+
+  updateSize = () => {
+    if (typeof window !== 'undefined') {
+      isPC.value = window.innerWidth > 768
+    }
+  }
+
+  updateSize()
+
+  if (typeof window !== 'undefined') {
+    window.addEventListener('resize', updateSize)
+  }
+})
+
+onUnmounted(() => {
+  if (typeof window !== 'undefined' && updateSize) {
+    window.removeEventListener('resize', updateSize)
+  }
+})
+
+// 跳转登录
+const goLogin = () => {
+  if (typeof window !== 'undefined') {
+    const redirect = encodeURIComponent(window.location.href)
+    window.location.href = `/login.html?redirect=${redirect}`
+  }
+}
+
+// 关闭悬浮窗（PC 才记住）
+const closeFloating = () => {
+  show.value = false
 }
 </script>
 
 <style scoped>
-.container {
-  max-width: 680px;
-  border-radius: 12px;
-  background-color: #f8fafc;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 1rem;
-  margin: 2rem auto;
-  cursor: pointer;
+.the-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  background: #000;
 }
 
-.login-message {
-  text-align: center;
-  background-color: #fffbeb;
-  border: 1px solid #fcd34d;
-  border-radius: 8px;
-  color: #b45309;
-  font-size: 1.1rem;
-  padding: 1rem;
+/* ========= PC 端：右下角悬浮 ========= */
+.video-wrapper.floating-mode {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 280px;
+  height: 170px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  z-index: 9999;
+  transition: all 0.4s ease;
 }
 
-.video-container {
+.video-wrapper.floating-mode:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+}
+
+/* ========= 移动端：普通内联响应式视频 ========= */
+.video-wrapper:not(.floating-mode) {
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  margin: 2rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  background: #000;
+}
+
+/* 未登录遮罩（通用） */
+.login-cover {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  border-radius: inherit;
+}
+.lock-icon {
+  font-size: 56px;
+  margin-bottom: 12px;
+}
+.tip {
+  font-size: 17px;
+  font-weight: 600;
 }
 
-video {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background: #000;
+/* 关闭按钮（仅 PC 悬浮时显示） */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0,0,0,0.6);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+.close-btn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+/* 移动端微调 */
+@media (max-width: 768px) {
+  .video-wrapper:not(.floating-mode) {
+    margin: 1.5rem 0;
+    border-radius: 12px;
+  }
 }
 </style>

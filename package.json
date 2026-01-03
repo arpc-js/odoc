@@ -5,6 +5,7 @@
     "docs:preview": "vitepress preview"
   },
   "devDependencies": {
+    "vite-plugin-compression": "^0.5.1",
     "vitepress": "^1.6.3"
   }
 }

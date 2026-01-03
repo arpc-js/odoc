@@ -1,7 +1,5 @@
 <MyButton />
-<script setup>
-import MyButton from '../.vitepress/components/MyButton.vue'
-</script>
+
 # Go语言简介
 
 ## 课程介绍
